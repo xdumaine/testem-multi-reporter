@@ -14,7 +14,7 @@ Create a `testem.js` config file that sets reporter to `testem-multi-reporter`,
 and pass it the other reporters you want to use.
 
 ````
-const MultiReporter = require('./index');
+const MultiReporter = require('testem-multi-reporter');
 const TimeReporter = require('testem-time-reporter');
 const XunitReporter = require('testem/lib/reporters/xunit_reporter');
 
@@ -23,7 +23,7 @@ const reporters = [{
   args: [{ out: process.stdout }]
 }, {
   ReporterClass: XunitReporter,
-  args: [false, xunitReporterStream, { get: () => false }]
+  args: [false, 'tests/xunit.xml', { get: () => false }]
 }];
 const multiReporter = new MultiReporter({ reporters });
 
