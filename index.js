@@ -16,8 +16,15 @@ function MultiReporter (opts) {
 }
 
 MultiReporter.prototype = {
-  report: function () {
+  report: function (prefix, data) {
     const args = arguments;
+    // do some helpful coersion of messages from assertions without a message
+    if (data.error && !data.error.message) {
+      if (data.error.hasOwnProperty('actual') && data.error.hasOwnProperty('expected')) {
+        data.error.message = `Assertion failure without message - Actual: ${data.error.actual} Expected: ${data.error.expected}`;
+        data.error.stack = '[stack hidden - error is assertion error]';
+      }
+    }
     this.reporters.forEach(r => r.report(...args));
   },
   finish: function () {
