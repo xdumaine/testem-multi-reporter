@@ -27,6 +27,14 @@ MultiReporter.prototype = {
     }
     this.reporters.forEach(r => r.report(...args));
   },
+  reportMetadata: function (tag, metadata) {
+    const args = arguments;
+    this.reporters.forEach(r => {
+      if (r.reportMetadata && typeof r.reportMetadata === "function") {
+        r.reportMetadata(...args);
+      }
+    });
+  },
   finish: function () {
     const args = arguments;
     this.reporters.forEach(r => r.finish(...args));
