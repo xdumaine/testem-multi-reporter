@@ -13,7 +13,7 @@ an xunit report to a file.
 Create a `testem.js` config file that sets reporter to `testem-multi-reporter`,
 and pass it the other reporters you want to use.
 
-````
+```js
 const MultiReporter = require('testem-multi-reporter');
 const TimeReporter = require('testem-time-reporter');
 const XunitReporter = require('testem/lib/reporters/xunit_reporter');
@@ -36,7 +36,7 @@ module.exports = {
   ],
   reporter: multiReporter
 };
-````
+```
 
 Run tests in an Ember CLI project, reporting only failures:
 
